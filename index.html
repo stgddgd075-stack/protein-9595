@@ -12,9 +12,26 @@
     <p>گالری محصولات — برای دیدن عکس بزرگ روی تصویر کلیک کنید</p>
   </header>
 
+  <!-- دسته‌بندی‌ها -->
+  <div class="categories" id="categories">
+    <button class="cat-btn active" data-category="all">همه</button>
+    <button class="cat-btn" data-category="burger">همبرگر</button>
+    <button class="cat-btn" data-category="kebab">کباب لقمه</button>
+    <button class="cat-btn" data-category="canned">کنسرو</button>
+    <button class="cat-btn" data-category="sauce">سس</button>
+    <button class="cat-btn" data-category="pickle">خیارشور و ترشی</button>
+    <button class="cat-btn" data-category="pizza">پنیر و خمیر پیتزا</button>
+    <button class="cat-btn" data-category="kebab-material">مواد کباب</button>
+    <button class="cat-btn" data-category="sausage">کالباس و سوسیس</button>
+    <button class="cat-btn" data-category="hadak">هاداک</button>
+  </div>
+
   <main>
     <div class="gallery" id="gallery">
       <!-- عکس‌ها اینجا به صورت خودکار اضافه می‌شن -->
+    </div>
+    <div class="empty-message" id="emptyMessage" style="display:none;">
+      هنوز محصولی در این دسته اضافه نشده است
     </div>
   </main>
 
