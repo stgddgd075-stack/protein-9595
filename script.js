@@ -28,7 +28,7 @@ const products = [
   { image: "images/4540.jpg", title: "آبلیمو بدر (BADR)", category: "sauce" },
 
   // پنیر و خمیر پیتزا
-  { image: "images/4738.png", title: "پنیر ۹۵۹۵ ۵۰۰ گرمی", category: "pizza" }
+  { image: "images/file_000000006c2081f6972ff516ac7c4a57.png", title: "پنیر ۹۵۹۵ ۵۰۰ گرمی", category: "pizza" }
 ];
 
 // ============================================
