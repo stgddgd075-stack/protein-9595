@@ -19,7 +19,6 @@ const products = [
   // کنسرو
   { image: "images/4526.jpg", title: "کنسرو سس ماکارونی فدک", category: "canned" },
   { image: "images/4522.jpg", title: "فدک خورشت قرمه سبزی", category: "canned" },
-  { image: "images/4521.jpg", title: "فدک خورشت قرمه سبزی (قوطی)", category: "canned" },
   { image: "images/4523.jpg", title: "فدک خوراک مرغ", category: "canned" },
   { image: "images/4525.jpg", title: "فدک جوجه کباب", category: "canned" },
   { image: "images/4524.jpg", title: "فدک خورشت فسنجان", category: "canned" },
