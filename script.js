@@ -25,7 +25,10 @@ const products = [
 
   // سس
   { image: "images/4520.jpg", title: "سس‌های مری‌جوی (۵ طعم)", category: "sauce" },
-  { image: "images/4540.jpg", title: "آبلیمو بدر (BADR)", category: "sauce" }
+  { image: "images/4540.jpg", title: "آبلیمو بدر (BADR)", category: "sauce" },
+
+  // پنیر و خمیر پیتزا
+  { image: "images/4738.png", title: "پنیر ۹۵۹۵ ۵۰۰ گرمی", category: "pizza" }
 ];
 
 // ============================================
