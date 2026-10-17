@@ -17,14 +17,14 @@ const products = [
   { image: "images/4528.jpg", title: "ویچ‌لند کباب لقمه ۸۵٪", category: "kebab" },
 
   // کنسرو
-  { image: "images/4526.jpg", title: "کنسرو سس ماکارونی فدک", category: "canned" },
-  { image: "images/4522.jpg", title: "فدک خورشت قرمه سبزی", category: "canned" },
-  { image: "images/4523.jpg", title: "فدک خوراک مرغ", category: "canned" },
-  { image: "images/4525.jpg", title: "فدک جوجه کباب", category: "canned" },
-  { image: "images/4524.jpg", title: "فدک خورشت فسنجان", category: "canned" },
-  { image: "images/IMG_20261016_173019_139.jpg", title: "کنسرو نخود سبز فدک", category: "canned" },
-  { image: "images/IMG_20261016_173022_049.jpg", title: "کنسرو لوبیا چیتی فدک", category: "canned" },
-  { image: "images/file_00000000b79c8211ac150b1ef16846f4.png", title: "کنسرو مخلوط سبزیجات فدک", category: "canned" },
+  { image: "images/4526.jpg", title: "کنسرو سس ماکارونی", category: "canned" },
+  { image: "images/4522.jpg", title: "خورشت قرمه سبزی", category: "canned" },
+  { image: "images/4523.jpg", title: "خوراک مرغ", category: "canned" },
+  { image: "images/4525.jpg", title: "جوجه کباب", category: "canned" },
+  { image: "images/4524.jpg", title: "خورشت فسنجان", category: "canned" },
+  { image: "images/IMG_20261016_173019_139.jpg", title: "کنسرو نخود سبز", category: "canned" },
+  { image: "images/IMG_20261016_173022_049.jpg", title: "کنسرو لوبیا چیتی", category: "canned" },
+  { image: "images/file_00000000b79c8211ac150b1ef16846f4.png", title: "کنسرو مخلوط سبزیجات", category: "canned" },
 
   // سس
   { image: "images/4520.jpg", title: "سس‌های مری‌جوی (۵ طعم)", category: "sauce" },
