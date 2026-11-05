@@ -1,5 +1,6 @@
 // ============================================
 // لیست محصولات پروتین 9595 با دسته‌بندی
+// نسخه بهینه برای گوشی‌های ضعیف
 // ============================================
 
 const products = [
@@ -34,10 +35,6 @@ const products = [
   { image: "images/file_000000006c2081f6972ff516ac7c4a57.png", title: "پنیر ۹۵۹۵ ۵۰۰ گرمی", category: "pizza" }
 ];
 
-// ============================================
-// از اینجا به پایین نیازی به تغییر نیست
-// ============================================
-
 const gallery = document.getElementById("gallery");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
@@ -49,7 +46,6 @@ const categoryButtons = document.querySelectorAll(".cat-btn");
 
 let currentIndex = 0;
 let filteredProducts = [...products];
-let currentCategory = "all";
 
 function buildGallery(list) {
   gallery.innerHTML = "";
@@ -62,23 +58,34 @@ function buildGallery(list) {
 
   emptyMessage.style.display = "none";
 
+  // ساخت سریع‌تر برای گوشی ضعیف
+  const fragment = document.createDocumentFragment();
+
   list.forEach((product, index) => {
     const item = document.createElement("div");
     item.className = "gallery-item";
-    item.style.animationDelay = `${index * 0.05}s`;
-    item.innerHTML = `
-      <img src="${product.image}" alt="${product.title}" loading="lazy" />
-      <div class="caption">${product.title}</div>
-    `;
+
+    const img = document.createElement("img");
+    img.src = product.image;
+    img.alt = product.title;
+    img.loading = "lazy";
+    img.decoding = "async";
+
+    const caption = document.createElement("div");
+    caption.className = "caption";
+    caption.textContent = product.title;
+
+    item.appendChild(img);
+    item.appendChild(caption);
+
     item.addEventListener("click", () => openLightbox(index));
-    gallery.appendChild(item);
+    fragment.appendChild(item);
   });
+
+  gallery.appendChild(fragment);
 }
 
 function filterCategory(category) {
-  currentCategory = category;
-
-  // فعال کردن دکمه
   categoryButtons.forEach(btn => {
     btn.classList.toggle("active", btn.dataset.category === category);
   });
@@ -86,8 +93,7 @@ function filterCategory(category) {
   if (category === "all") {
     buildGallery(products);
   } else {
-    const filtered = products.filter(p => p.category === category);
-    buildGallery(filtered);
+    buildGallery(products.filter(p => p.category === category));
   }
 }
 
@@ -115,11 +121,8 @@ function showPrev() {
   lightboxImg.src = filteredProducts[currentIndex].image;
 }
 
-// رویدادها
 categoryButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    filterCategory(btn.dataset.category);
-  });
+  btn.addEventListener("click", () => filterCategory(btn.dataset.category));
 });
 
 closeBtn.addEventListener("click", closeLightbox);
@@ -137,5 +140,4 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") showNext();
 });
 
-// شروع
 buildGallery(products);
