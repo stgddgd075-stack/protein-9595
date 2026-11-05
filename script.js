@@ -1,6 +1,6 @@
 // ============================================
-// لیست محصولات پروتین 9595 با دسته‌بندی
-// نسخه بهینه برای گوشی‌های ضعیف
+// لیست محصولات پروتین 9595
+// نسخه پایدار و سبک برای گوشی‌های ضعیف
 // ============================================
 
 const products = [
@@ -45,7 +45,7 @@ const emptyMessage = document.getElementById("emptyMessage");
 const categoryButtons = document.querySelectorAll(".cat-btn");
 
 let currentIndex = 0;
-let filteredProducts = [...products];
+let filteredProducts = products.slice();
 
 function buildGallery(list) {
   gallery.innerHTML = "";
@@ -58,54 +58,56 @@ function buildGallery(list) {
 
   emptyMessage.style.display = "none";
 
-  // ساخت سریع‌تر برای گوشی ضعیف
-  const fragment = document.createDocumentFragment();
+  for (var i = 0; i < list.length; i++) {
+    (function(index) {
+      var product = list[index];
+      var item = document.createElement("div");
+      item.className = "gallery-item";
 
-  list.forEach((product, index) => {
-    const item = document.createElement("div");
-    item.className = "gallery-item";
+      item.innerHTML = '<img src="' + product.image + '" alt="' + product.title + '" loading="lazy">' +
+                       '<div class="caption">' + product.title + '</div>';
 
-    const img = document.createElement("img");
-    img.src = product.image;
-    img.alt = product.title;
-    img.loading = "lazy";
-    img.decoding = "async";
+      item.onclick = function() {
+        openLightbox(index);
+      };
 
-    const caption = document.createElement("div");
-    caption.className = "caption";
-    caption.textContent = product.title;
-
-    item.appendChild(img);
-    item.appendChild(caption);
-
-    item.addEventListener("click", () => openLightbox(index));
-    fragment.appendChild(item);
-  });
-
-  gallery.appendChild(fragment);
+      gallery.appendChild(item);
+    })(i);
+  }
 }
 
 function filterCategory(category) {
-  categoryButtons.forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.category === category);
-  });
+  for (var i = 0; i < categoryButtons.length; i++) {
+    var btn = categoryButtons[i];
+    if (btn.getAttribute("data-category") === category) {
+      btn.className = "cat-btn active";
+    } else {
+      btn.className = "cat-btn";
+    }
+  }
 
   if (category === "all") {
     buildGallery(products);
   } else {
-    buildGallery(products.filter(p => p.category === category));
+    var filtered = [];
+    for (var j = 0; j < products.length; j++) {
+      if (products[j].category === category) {
+        filtered.push(products[j]);
+      }
+    }
+    buildGallery(filtered);
   }
 }
 
 function openLightbox(index) {
   currentIndex = index;
   lightboxImg.src = filteredProducts[currentIndex].image;
-  lightbox.classList.add("active");
+  lightbox.className = "lightbox active";
   document.body.style.overflow = "hidden";
 }
 
 function closeLightbox() {
-  lightbox.classList.remove("active");
+  lightbox.className = "lightbox";
   document.body.style.overflow = "";
 }
 
@@ -121,23 +123,20 @@ function showPrev() {
   lightboxImg.src = filteredProducts[currentIndex].image;
 }
 
-categoryButtons.forEach(btn => {
-  btn.addEventListener("click", () => filterCategory(btn.dataset.category));
-});
+for (var k = 0; k < categoryButtons.length; k++) {
+  (function(btn) {
+    btn.onclick = function() {
+      filterCategory(btn.getAttribute("data-category"));
+    };
+  })(categoryButtons[k]);
+}
 
-closeBtn.addEventListener("click", closeLightbox);
-nextBtn.addEventListener("click", showNext);
-prevBtn.addEventListener("click", showPrev);
+closeBtn.onclick = closeLightbox;
+nextBtn.onclick = showNext;
+prevBtn.onclick = showPrev;
 
-lightbox.addEventListener("click", (e) => {
+lightbox.onclick = function(e) {
   if (e.target === lightbox) closeLightbox();
-});
-
-document.addEventListener("keydown", (e) => {
-  if (!lightbox.classList.contains("active")) return;
-  if (e.key === "Escape") closeLightbox();
-  if (e.key === "ArrowRight") showPrev();
-  if (e.key === "ArrowLeft") showNext();
-});
+};
 
 buildGallery(products);
